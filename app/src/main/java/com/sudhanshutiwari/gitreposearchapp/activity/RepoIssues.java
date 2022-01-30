@@ -24,12 +24,12 @@ import retrofit2.Response;
 public class RepoIssues extends AppCompatActivity {
 
     Bundle extras;
-    TextView reposNAmes , reposDescrip , reposlanguages;
+    TextView reposNAmes , reposDescrip , reposlanguages , reposIssues;
 
     RecyclerView issuesRecycler;
     RecyclerView.Adapter issueAdapter;
     ArrayList<repoIssuesM> issuesData = new ArrayList<>();
-    String name , description, language , GitUserName;
+    String name , description, language , GitUserName , issues;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +38,7 @@ public class RepoIssues extends AppCompatActivity {
         reposNAmes = findViewById(R.id.reposNI);
         reposDescrip = findViewById(R.id.reposDI);
         reposlanguages  = findViewById(R.id.reposLI);
+        reposIssues  = findViewById(R.id.repoII);
 
         extras = getIntent().getExtras();
         name = extras.getString("repoName");
@@ -46,6 +47,9 @@ public class RepoIssues extends AppCompatActivity {
         reposDescrip.setText(description);
         language = extras.getString("userRepoLanguage");
         reposlanguages.setText("Language : "+language);
+        issues = extras.getString("repoIssues");
+        reposIssues.setText("Issues : "+issues);
+
 
 
         GitUserName = userGitHistory.getUserNameValue();

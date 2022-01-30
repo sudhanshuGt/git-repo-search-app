@@ -71,10 +71,11 @@ public class gitRepoAdapter extends RecyclerView.Adapter<gitRepoAdapter.ReposVie
         holder.reposOpenIssues.setText("Issues : "+userRepos.get(position).getRepoIssues());
         holder.starGazers.setText("⭐: "+userRepos.get(position).getStarGazers());
 
-        String userRepoNames , userRepoDescription , userRepoLang;
+        String userRepoNames , userRepoDescription , userRepoLang , reposIssues;
         userRepoNames = userRepos.get(position).getRepoName();
         userRepoDescription = userRepos.get(position).getRepoDescription();
         userRepoLang = userRepos.get(position).getRepoLanguage();
+        reposIssues = userRepos.get(position).getRepoIssues();
 
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -85,6 +86,7 @@ public class gitRepoAdapter extends RecyclerView.Adapter<gitRepoAdapter.ReposVie
                 intent.putExtra("repoName", userRepoNames);
                 intent.putExtra("userRepoDescription", userRepoDescription);
                 intent.putExtra("userRepoLanguage", userRepoLang);
+                intent.putExtra("repoIssues",reposIssues);
                 context.startActivity(intent);
                 
             }
