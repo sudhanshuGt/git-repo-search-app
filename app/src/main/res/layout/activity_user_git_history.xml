@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#24292f"
+    tools:context=".activity.userGitHistory">
+
+    <RelativeLayout
+        android:id="@+id/userInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10sp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/userProfile"
+            android:layout_width="55sp"
+            android:layout_margin="5sp"
+            android:src="@mipmap/ic_launcher"
+            android:layout_height="55sp">
+        </ImageView>
+
+        <TextView
+            android:id="@+id/userName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="18dp"
+            android:layout_marginTop="16dp"
+            android:layout_toRightOf="@id/userProfile"
+            android:fontFamily="@font/space_mono_bold"
+            android:text="sudhanshu tiwari"
+            android:textColor="@color/white"
+            android:textSize="15sp"></TextView>
+
+        <TextView
+            android:id="@+id/userFollowers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/userName"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="7dp"
+            android:layout_toRightOf="@id/userProfile"
+            android:fontFamily="@font/space_mono_bold"
+            android:text="👥 : 2"
+            android:textColor="@color/white"
+            android:textSize="10sp"></TextView>
+
+        <TextView
+            android:id="@+id/userStars"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/userName"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="8dp"
+            android:layout_toRightOf="@id/userFollowers"
+            android:fontFamily="@font/space_mono_bold"
+            android:text="⭐ : 8"
+            android:textColor="@color/white"
+            android:textSize="10sp">
+        </TextView>
+
+        <TextView
+            android:id="@+id/userRepo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/userName"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="8dp"
+            android:layout_toRightOf="@id/userStars"
+            android:fontFamily="@font/space_mono_bold"
+            android:text="repo-10"
+            android:textColor="@color/white"
+            android:textSize="10sp"></TextView>
+
+        <TextView
+            android:id="@+id/userFollowing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/userName"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="8dp"
+            android:layout_toRightOf="@id/userRepo"
+            android:fontFamily="@font/space_mono_bold"
+            android:text="following"
+            android:textColor="@color/white"
+            android:textSize="10sp" />
+
+    </RelativeLayout>
+    <LinearLayout
+        android:id="@+id/repoHeads"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/userInfo">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="3sp"
+            android:backgroundTint="@color/white"
+            android:background="?android:attr/listDivider">
+        </RelativeLayout>
+        <TextView
+            android:id="@+id/repoOfUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/space_mono_bold"
+            android:textSize="15sp"
+            android:layout_margin="2sp"
+            android:text="sudhanshu's Repositories"
+            android:textColor="@color/white">
+        </TextView>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="3sp"
+            android:backgroundTint="@color/white"
+            android:background="?android:attr/listDivider">
+        </RelativeLayout>
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/repoListRecycler"
+        android:layout_width="423dp"
+        android:layout_height="599dp"
+        android:orientation="vertical"
+        android:paddingLeft="2dp"
+        android:paddingTop="10dp"
+        android:paddingRight="5dp"
+        android:paddingBottom="10dp"
+        app:layout_constraintTop_toBottomOf="@id/repoHeads"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:scrollbarAlwaysDrawVerticalTrack="true"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:layout_editor_absoluteY="132dp">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

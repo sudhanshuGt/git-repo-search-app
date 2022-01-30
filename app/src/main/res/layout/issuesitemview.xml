@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:elevation="20sp"
+    android:background="@drawable/dottedbg"
+    android:layout_margin="10sp"
+    android:padding="10sp">
+
+    <TextView
+        android:id="@+id/issuesTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="10sp"
+        android:textColor="#FB4F47"
+        android:maxLines="5"
+        android:lines="2"
+        android:fontFamily="@font/space_mono_bold"
+        android:text="this is issues of the repo here we all looking for the better solution">
+    </TextView>
+
+    <TextView
+        android:id="@+id/issuesBy"
+        android:layout_below="@id/issuesTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="By : sudhanshuGt"
+        android:fontFamily="@font/fira_mono"
+        android:textSize="10sp"
+        android:textColor="@color/white">
+    </TextView>
+    <TextView
+        android:id="@+id/issuesNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Issues Number : 223"
+        android:fontFamily="@font/space_mono_bold"
+        android:textSize="10sp"
+        android:textColor="#0969da"
+        android:layout_below="@id/issuesBy">
+    </TextView>
+
+</RelativeLayout>

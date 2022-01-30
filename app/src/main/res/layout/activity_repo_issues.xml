@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#24292f"
+    android:orientation="vertical"
+    tools:context=".activity.RepoIssues">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10sp"
+        android:background="@drawable/elevatedbg"
+        android:elevation="8sp"
+        android:padding="10sp">
+
+        <TextView
+            android:id="@+id/reposNI"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Whazzup"
+            android:textColor="@color/white"
+            android:fontFamily="@font/space_mono_bold"
+            android:textSize="15sp">
+        </TextView>
+        <TextView
+            android:id="@+id/reposDI"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="this is  the new description of whazzup"
+            android:fontFamily="@font/fira_mono"
+            android:textSize="10sp"
+            android:textColor="@color/white"
+            android:layout_below="@id/reposNI"
+            android:lines="2"
+            android:maxLines="2">
+        </TextView>
+        <TextView
+            android:id="@+id/reposLI"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="language : C++"
+            android:fontFamily="@font/space_mono_bold"
+            android:textSize="10sp"
+            android:textColor="@color/white"
+            android:layout_below="@id/reposDI">
+        </TextView>
+        <TextView
+            android:id="@+id/repoII"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Issues : 1"
+            android:textColor="@color/white"
+            android:textSize="10sp"
+            android:fontFamily="@font/space_mono_bold"
+            android:layout_below="@id/reposDI"
+            android:layout_toRightOf="@id/reposLI"
+            android:layout_marginLeft="10sp">
+        </TextView>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Repositories Issues"
+            android:textColor="@color/white"
+            android:fontFamily="@font/fira_mono"
+            android:background="@drawable/dottedbg"
+            android:padding="5sp"
+            android:textSize="10sp">
+        </TextView>
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/reposIssuesRecycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbarAlwaysDrawVerticalTrack="true"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
+    </androidx.recyclerview.widget.RecyclerView>
+
+</LinearLayout>

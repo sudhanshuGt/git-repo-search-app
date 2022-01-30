@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:gravity="center"
+    android:layout_margin="10sp"
+    android:padding="10sp"
+    android:background="@drawable/repoitembg"
+    android:paddingBottom="2sp"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/repoDetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/repoName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#0969da"
+            android:text="Whazzup"
+            android:fontFamily="@font/space_mono_bold"
+            android:textSize="15sp">
+        </TextView>
+
+        <TextView
+            android:id="@+id/repoDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/fira_mono"
+            android:lines="2"
+            android:maxLines="2"
+            android:gravity="left"
+            android:text="Messenger app with firebase mobile phone authentication , this app uses symmetric and assymetric "
+            android:textColor="@color/white"
+
+            android:textSize="10sp"></TextView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/repoLanguage"
+        android:layout_below="@id/repoDetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/repoLang"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Language : java"
+            android:textColor="@color/white"
+            android:textSize="10sp"
+            android:layout_marginRight="15sp"
+            android:fontFamily="@font/space_mono_bold">
+        </TextView>
+        <TextView
+            android:id="@+id/repoIssues"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Open Issues : 0"
+            android:fontFamily="@font/space_mono_bold"
+            android:textSize="10sp"
+            android:textColor="@color/white">
+
+        </TextView>
+        <TextView
+            android:id="@+id/starGazers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="⭐ : 1"
+            android:layout_marginLeft="10sp"
+            android:textSize="10sp"
+            android:fontFamily="@font/space_mono_bold"
+            android:textColor="@color/white">
+        </TextView>
+    </LinearLayout>
+    
+
+</RelativeLayout>
