@@ -25,8 +25,48 @@ public class MainActivity extends AppCompatActivity {
     private TextView textView , ErrorTextView;
     private TextInputLayout userNameInput;
     public static Button searchButton;
-    public static String messageNotFound , GitHUbUserName;
+    public static String userId , GitHUbUserName;
+    public static int flag = 0;
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        // initializing view
+        textView = findViewById(R.id.txtView);
+        ErrorTextView = findViewById(R.id.ErrorTextView);
+        userNameInput = findViewById(R.id.userNameInput);
+        searchButton = findViewById(R.id.userSearchButton);
+        
+        // handling button click
+        searchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                GitHUbUserName = userNameInput.getEditText().getText().toString();
+                if(GitHUbUserName.isEmpty())
+                {
+                    ErrorTextView.setText("field is empty");
+                    ErrorTextView.setVisibility(View.VISIBLE);
+                }
+                else {
+                    DownloadTask task = new DownloadTask();
+                    task.execute("https://api.github.com/users/"+GitHUbUserName);
+                    if(flag == 1){
+                          Intent intent = new Intent(MainActivity.this, userGitHistory.class);
+                          intent.putExtra("GitUserName", GitHUbUserName);
+                          startActivity(intent);
+                      }
+                      else{
+                          ErrorTextView.setText("invalid");
+                          ErrorTextView.setVisibility(View.VISIBLE);
+                      }
+                }
+            }
+        });
+    }
+
+    // downloading json data of user from api url to match data with user input
     public static class DownloadTask extends AsyncTask<String, Void, String> {
 
         @Override
@@ -34,8 +74,6 @@ public class MainActivity extends AppCompatActivity {
             String result = "";
             URL url;
             HttpURLConnection urlConnection = null;
-
-
             try {
                 url = new URL(urls[0]);
 
@@ -49,72 +87,30 @@ public class MainActivity extends AppCompatActivity {
                     result += current;
                     data = reader.read();
                 }
-
-
                 return result;
-
-            }   catch (Exception e) {
+            } catch (Exception e) {
                 e.printStackTrace();
                 return null;
             }
         }
-
-
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
 
             try {
-                JSONObject jsonObject  = new JSONObject(s);
-                messageNotFound = jsonObject.getString("login");
-                Log.d("message", messageNotFound);
-
-
+                JSONObject jsonObject = new JSONObject(s);
+                userId = jsonObject.getString("login").toString();
+                if (GitHUbUserName.equals(userId)) {
+                    flag = 1;
+                    Log.d("value", "true");
+                } else {
+                    flag = 0;
+                    Log.d("value", "false");
+                }
 
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
         }
     }
-
-
-
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-
-        textView = findViewById(R.id.txtView);
-        ErrorTextView = findViewById(R.id.ErrorTextView);
-        userNameInput = findViewById(R.id.userNameInput);
-        searchButton = findViewById(R.id.userSearchButton);
-
-
-
-        // on button click
-        searchButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                GitHUbUserName = userNameInput.getEditText().getText().toString();
-
-                if (GitHUbUserName.isEmpty()){
-                    ErrorTextView.setText("field is empty");
-                    ErrorTextView.setVisibility(View.VISIBLE);
-                }
-                else {
-                    Intent intent = new Intent(MainActivity.this, userGitHistory.class);
-                    intent.putExtra("GitUserName",GitHUbUserName);
-                    startActivity(intent);
-                }
-
-
-
-            }
-        });
-    }
-
-  
 }

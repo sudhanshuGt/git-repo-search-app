@@ -31,7 +31,7 @@
             android:layout_marginTop="16dp"
             android:layout_toRightOf="@id/userProfile"
             android:fontFamily="@font/space_mono_bold"
-            android:text="sudhanshu tiwari"
+            android:text="user name"
             android:textColor="@color/white"
             android:textSize="15sp"></TextView>
 
@@ -44,23 +44,11 @@
             android:layout_marginTop="7dp"
             android:layout_toRightOf="@id/userProfile"
             android:fontFamily="@font/space_mono_bold"
-            android:text="👥 : 2"
+            android:text="Followers : "
             android:textColor="@color/white"
             android:textSize="10sp"></TextView>
 
-        <TextView
-            android:id="@+id/userStars"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/userName"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="8dp"
-            android:layout_toRightOf="@id/userFollowers"
-            android:fontFamily="@font/space_mono_bold"
-            android:text="⭐ : 8"
-            android:textColor="@color/white"
-            android:textSize="10sp">
-        </TextView>
+
 
         <TextView
             android:id="@+id/userRepo"
@@ -69,9 +57,9 @@
             android:layout_below="@id/userName"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="8dp"
-            android:layout_toRightOf="@id/userStars"
+            android:layout_toRightOf="@id/userFollowers"
             android:fontFamily="@font/space_mono_bold"
-            android:text="repo-10"
+            android:text="repo-"
             android:textColor="@color/white"
             android:textSize="10sp"></TextView>
 
@@ -84,7 +72,7 @@
             android:layout_marginTop="8dp"
             android:layout_toRightOf="@id/userRepo"
             android:fontFamily="@font/space_mono_bold"
-            android:text="following"
+            android:text="following:"
             android:textColor="@color/white"
             android:textSize="10sp" />
 

@@ -62,7 +62,7 @@
         android:layout_marginTop="16dp"
         android:fontFamily="@font/armata"
         android:text="Error Text "
-        android:textSize="8dp"
+        android:textSize="10dp"
         android:textColor="#EC2222"
         android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/txtView"
