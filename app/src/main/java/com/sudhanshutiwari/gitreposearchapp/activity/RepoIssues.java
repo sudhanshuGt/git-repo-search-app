@@ -2,6 +2,7 @@ package com.sudhanshutiwari.gitreposearchapp.activity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -82,5 +83,15 @@ public class RepoIssues extends AppCompatActivity {
                 Log.d("response" , t.toString());
             }
         });
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event)
+    {
+        if ((keyCode == KeyEvent.KEYCODE_BACK))
+        {
+            finish();
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

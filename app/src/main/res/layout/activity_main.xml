@@ -62,7 +62,7 @@
         android:layout_marginTop="16dp"
         android:fontFamily="@font/armata"
         android:text="Error Text "
-        android:textSize="10dp"
+        android:textSize="12dp"
         android:textColor="#EC2222"
         android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/txtView"
@@ -71,5 +71,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.517" />
+
+    <ListView
+        android:id="@+id/ListViewUsers"
+        android:layout_width="425dp"
+        android:layout_height="499dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_margin="10sp"
+        app:layout_constraintTop_toBottomOf="@id/userSearchButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

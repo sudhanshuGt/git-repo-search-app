@@ -1,24 +1,23 @@
 package com.sudhanshutiwari.gitreposearchapp.activity;
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.textfield.TextInputLayout;
 import com.sudhanshutiwari.gitreposearchapp.R;
+import com.sudhanshutiwari.gitreposearchapp.gitapi.GitApiClient;
+import com.sudhanshutiwari.gitreposearchapp.gitapi.UserEndPoint;
+import com.sudhanshutiwari.gitreposearchapp.modelclass.gitUser;
 
-import org.json.JSONObject;
-
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -38,79 +37,47 @@ public class MainActivity extends AppCompatActivity {
         ErrorTextView = findViewById(R.id.ErrorTextView);
         userNameInput = findViewById(R.id.userNameInput);
         searchButton = findViewById(R.id.userSearchButton);
-        
+
         // handling button click
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 GitHUbUserName = userNameInput.getEditText().getText().toString();
-                if(GitHUbUserName.isEmpty())
-                {
-                    ErrorTextView.setText("field is empty");
-                    ErrorTextView.setVisibility(View.VISIBLE);
-                }
-                else {
-                    DownloadTask task = new DownloadTask();
-                    task.execute("https://api.github.com/users/"+GitHUbUserName);
-                    if(flag == 1){
-                          Intent intent = new Intent(MainActivity.this, userGitHistory.class);
-                          intent.putExtra("GitUserName", GitHUbUserName);
-                          startActivity(intent);
-                      }
-                      else{
-                          ErrorTextView.setText("invalid");
+
+                final UserEndPoint gitApi = GitApiClient.getClient().create(UserEndPoint.class);
+                Call<gitUser> call = gitApi.getTheUser(GitHUbUserName);
+                call.enqueue(new Callback<gitUser>() {
+                    @Override
+                    public void onResponse(Call<gitUser> call, Response<gitUser> response) {
+
+                        if(GitHUbUserName.isEmpty())
+                        {
+                          ErrorTextView.setText("field can't be  empty !");
                           ErrorTextView.setVisibility(View.VISIBLE);
-                      }
-                }
+                        }
+                        else {
+                            if(!response.isSuccessful()){
+                                 ErrorTextView.setText("Invalid UserName !");
+                                 ErrorTextView.setVisibility(View.VISIBLE);
+                                 
+                            }
+                            else if (response.isSuccessful()){
+                                ErrorTextView.setVisibility(View.INVISIBLE);
+                                Intent intent = new Intent(MainActivity.this, userGitHistory.class);
+                                intent.putExtra("GitUserName", GitHUbUserName);
+                                startActivity(intent);
+                            }
+                        }
+
+                    }
+                    @Override
+                    public void onFailure(Call<gitUser> call, Throwable t) {
+                        Toast.makeText(MainActivity.this, "Failed to load data", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
             }
         });
     }
 
-    // downloading json data of user from api url to match data with user input
-    public static class DownloadTask extends AsyncTask<String, Void, String> {
-
-        @Override
-        protected String doInBackground(String... urls) {
-            String result = "";
-            URL url;
-            HttpURLConnection urlConnection = null;
-            try {
-                url = new URL(urls[0]);
-
-                urlConnection = (HttpURLConnection) url.openConnection();
-                InputStream in = urlConnection.getInputStream();
-                InputStreamReader reader = new InputStreamReader(in);
-                int data = reader.read();
-
-                while (data != -1) {
-                    char current = (char) data;
-                    result += current;
-                    data = reader.read();
-                }
-                return result;
-            } catch (Exception e) {
-                e.printStackTrace();
-                return null;
-            }
-        }
-        @Override
-        protected void onPostExecute(String s) {
-            super.onPostExecute(s);
-
-            try {
-                JSONObject jsonObject = new JSONObject(s);
-                userId = jsonObject.getString("login").toString();
-                if (GitHUbUserName.equals(userId)) {
-                    flag = 1;
-                    Log.d("value", "true");
-                } else {
-                    flag = 0;
-                    Log.d("value", "false");
-                }
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-    }
 }
